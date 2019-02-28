@@ -1,16 +1,36 @@
 <ul>
-  <li *ngFor="let element of list" (click)="selectedItem = element" [ngClass]="{'selected': element === selectedItem}">
-    {{ element }}
+  <li
+    *ngFor="let item of list"
+    (click)="selectedItem = item"
+    [ngClass]="{ selected: item === selectedItem }"
+  >
+    <ng-template
+      [ngTemplateOutlet]="template"
+      [ngTemplateOutletContext]="{
+        item: item
+      }"
+    >
+    </ng-template>
   </li>
 </ul>
 
-<button (click)="moveAllToList2()"> >> </button>
-<button (click)="moveSelectedToList2()"> > </button>
-<button (click)="moveSelectedToList()"> < </button>
-<button (click)="moveAllToList()"> << </button>
+<button (click)="moveAllToList2()">>></button>
+<button (click)="moveSelectedToList2()">></button>
+<button (click)="moveSelectedToList()"><</button>
+<button (click)="moveAllToList()"><<</button>
 
 <ul>
-  <li *ngFor="let element2 of list2" (click)="selectedItem2 = element2" [ngClass]="{'selected': element2 === selectedItem2}">
-    {{ element2 }}
+  <li
+    *ngFor="let item of list2"
+    (click)="selectedItem2 = item"
+    [ngClass]="{ selected: item === selectedItem2 }"
+  >
+    <ng-template
+      [ngTemplateOutlet]="template"
+      [ngTemplateOutletContext]="{
+        item: item
+      }"
+    >
+    </ng-template>
   </li>
 </ul>

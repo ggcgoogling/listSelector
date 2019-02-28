@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef, ContentChild } from '@angular/core';
 
 @Component({
   selector: 'app-list-selector',
@@ -10,6 +10,9 @@ export class ListSelectorComponent implements OnInit {
   public list2: Array<any> = [];
   public selectedItem: any;
   public selectedItem2: any;
+
+  @ContentChild(TemplateRef)
+  template: TemplateRef<any>;
 
   constructor() { }
 

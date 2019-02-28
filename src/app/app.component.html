@@ -1,1 +1,6 @@
-<app-list-selector [list]="passengers"></app-list-selector>
+<app-list-selector [list]="passengers">
+  <ng-template let-item="item">
+    {{item.name}}
+    {{item.description}}
+  </ng-template>
+</app-list-selector>
