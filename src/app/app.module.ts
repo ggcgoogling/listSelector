@@ -3,14 +3,18 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { ListSelectorComponent } from './list-selector/list-selector.component';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ListSelectorComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
