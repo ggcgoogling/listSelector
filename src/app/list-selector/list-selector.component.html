@@ -1,8 +1,8 @@
 <ul>
   <li
     *ngFor="let item of list"
-    (click)="selectedItem = item"
-    [ngClass]="{ selected: item === selectedItem }"
+    (click)="selectFromList(item)"
+    [ngClass]="{ selected: isSelected(item, selectedItems) }"
   >
     <ng-template
       [ngTemplateOutlet]="template"
@@ -22,8 +22,8 @@
 <ul>
   <li
     *ngFor="let item of list2"
-    (click)="selectedItem2 = item"
-    [ngClass]="{ selected: item === selectedItem2 }"
+    (click)="selectFromList2(item)"
+    [ngClass]="{ selected: isSelected(item, selectedItems2) }"
   >
     <ng-template
       [ngTemplateOutlet]="template"
