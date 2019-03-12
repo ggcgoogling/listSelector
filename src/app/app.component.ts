@@ -8,12 +8,17 @@ import { Passenger } from './app.model';
 })
 export class AppComponent {
   passengers: Passenger[] = [
-    { name: 'jose', description: 'description 1' },
-    { name: 'luis', description: 'description 2' },
-    { name: 'pedro', description: 'description 3' },
-    { name: 'anna', description: 'description 4' },
-    { name: 'alex', description: 'description 5' },
-    { name: 'marta', description: 'description 6' },
-    { name: 'ines', description: 'description 7' },
+    { name: 'jose', description: 'description 1', id: 1 },
+    { name: 'luis', description: 'description 2', id: 2 },
+    { name: 'pedro', description: 'description 3', id: 3 },
+    { name: 'anna', description: 'description 4', id: 4 },
+    { name: 'alex', description: 'description 5', id: 5 },
+  ];
+  passengers2: Passenger[] = [
+    { name: 'jose', description: 'description 6', id: 6 },
+    { name: 'luis', description: 'description 7', id: 7 },
+    { name: 'pedro', description: 'description 8', id: 8 },
+    { name: 'anna', description: 'description 4', id: 4 },
+    { name: 'alex', description: 'description 5', id: 5 },
   ];
 }
