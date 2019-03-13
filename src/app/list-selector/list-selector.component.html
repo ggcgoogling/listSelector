@@ -14,10 +14,10 @@
   </li>
 </ul>
 
-<input type="button" (click)="moveAllToList2()" value=">>">
-<input type="button" (click)="moveSelectedToList2()" value=">">
-<input type="button" (click)="moveSelectedToList()" value="<">
-<input type="button" (click)="moveAllToList()" value="<<">
+<input type="button" (click)="moveAllToList2()" value=">>" [disabled]="isDisabled">
+<input type="button" (click)="moveSelectedToList2()" value=">" [disabled]="isDisabled">
+<input type="button" (click)="moveSelectedToList()" value="<" [disabled]="isDisabled">
+<input type="button" (click)="moveAllToList()" value="<<" [disabled]="isDisabled">
 
 <ul>
   <li

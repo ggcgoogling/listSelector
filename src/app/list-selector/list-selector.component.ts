@@ -19,6 +19,7 @@ export class ListSelectorComponent implements ControlValueAccessor {
   @Input() public id: string;
   public selectedItems: Array<any> = [];
   public selectedItems2: Array<any> = [];
+  public isDisabled = false;
 
   @ContentChild(TemplateRef)
   template: TemplateRef<any>;
@@ -43,6 +44,7 @@ export class ListSelectorComponent implements ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
+    this.isDisabled = isDisabled;
   }
 
   moveSelectedToList(): void {
@@ -98,13 +100,15 @@ export class ListSelectorComponent implements ControlValueAccessor {
   }
 
   private selectFromListX(element: any, list: Array<any>): void {
-    if (this.isSelected(element, list)) {
-      const index = list.indexOf(element);
-        if (index !== -1) {
-          list.splice(index, 1);
-        }
-    } else {
-      list.push(element);
+    if (!this.isDisabled) {
+      if (this.isSelected(element, list)) {
+        const index = list.indexOf(element);
+          if (index !== -1) {
+            list.splice(index, 1);
+          }
+      } else {
+        list.push(element);
+      }
     }
   }
 
