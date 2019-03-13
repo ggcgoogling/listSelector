@@ -25,7 +25,7 @@ export class ListSelectorComponent implements ControlValueAccessor {
   template: TemplateRef<any>;
 
   public onChange: any = (_: any) => { };
-  public onTouched: any = (_: any) => { };
+  public onTouched: any = () => { };
 
   constructor() { }
 
@@ -50,12 +50,14 @@ export class ListSelectorComponent implements ControlValueAccessor {
   moveSelectedToList(): void {
     this.moveElementsFromAtoB(this.selectedItems2, this.list2, this.list);
     this.onChange(this.list2);
+    this.onTouched();
   }
 
   moveAllToList(): void {
     this.moveAllFromAToB(this.list2, this.list);
     this.selectedItems2 = [];
     this.onChange(this.list2);
+    this.onTouched();
   }
 
   selectFromList(element: any): void {
@@ -65,12 +67,14 @@ export class ListSelectorComponent implements ControlValueAccessor {
   moveSelectedToList2(): void {
     this.moveElementsFromAtoB(this.selectedItems, this.list, this.list2);
     this.onChange(this.list2);
+    this.onTouched();
   }
 
   moveAllToList2(): void {
     this.moveAllFromAToB(this.list, this.list2);
     this.selectedItems = [];
     this.onChange(this.list2);
+    this.onTouched();
   }
 
   selectFromList2(element: any): void {
@@ -109,6 +113,7 @@ export class ListSelectorComponent implements ControlValueAccessor {
       } else {
         list.push(element);
       }
+      this.onTouched();
     }
   }
 
