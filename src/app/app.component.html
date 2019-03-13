@@ -1,6 +1,10 @@
-<app-list-selector [list]="passengers" [list2]="passengers2" id="id">
-  <ng-template let-item="item">
-    {{item.name}}
-    {{item.description}}
-  </ng-template>
-</app-list-selector>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <app-list-selector formControlName="selectedPassengers" [list]="passengers" [list2]="passengers2" id="id">
+    <ng-template let-item="item">
+      {{item.name}}
+      {{item.description}}
+    </ng-template>
+  </app-list-selector>
+
+  <input type="submit" value="OK">
+</form>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Passenger } from './app.model';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -21,4 +22,15 @@ export class AppComponent {
     { name: 'anna', description: 'description 4', id: 4 },
     { name: 'alex', description: 'description 5', id: 5 },
   ];
+  public form: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      selectedPassengers: [this.passengers2]
+    });
+  }
+
+  onSubmit(): void {
+    console.log(this.form.value.selectedPassengers);
+  }
 }

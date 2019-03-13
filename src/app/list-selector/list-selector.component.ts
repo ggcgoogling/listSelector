@@ -1,11 +1,19 @@
-import { Component, OnInit, Input, TemplateRef, ContentChild } from '@angular/core';
+import { Component, Input, TemplateRef, ContentChild, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-list-selector',
   templateUrl: './list-selector.component.html',
-  styleUrls: ['./list-selector.component.css']
+  styleUrls: ['./list-selector.component.css'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ListSelectorComponent),
+      multi: true
+    }
+  ]
 })
-export class ListSelectorComponent implements OnInit {
+export class ListSelectorComponent implements ControlValueAccessor {
   @Input() public list: Array<any> = [];
   @Input() public list2: Array<any> = [];
   @Input() public id: string;
@@ -15,18 +23,37 @@ export class ListSelectorComponent implements OnInit {
   @ContentChild(TemplateRef)
   template: TemplateRef<any>;
 
+  public onChange: any = (_: any) => { };
+  public onTouched: any = (_: any) => { };
+
   constructor() { }
 
-  ngOnInit() {
+  writeValue(obj: Array<any>): void {
+    if (obj !== undefined) {
+      this.list2 = obj;
+    }
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
   }
 
   moveSelectedToList(): void {
     this.moveElementsFromAtoB(this.selectedItems2, this.list2, this.list);
+    this.onChange(this.list2);
   }
 
   moveAllToList(): void {
     this.moveAllFromAToB(this.list2, this.list);
     this.selectedItems2 = [];
+    this.onChange(this.list2);
   }
 
   selectFromList(element: any): void {
@@ -35,11 +62,13 @@ export class ListSelectorComponent implements OnInit {
 
   moveSelectedToList2(): void {
     this.moveElementsFromAtoB(this.selectedItems, this.list, this.list2);
+    this.onChange(this.list2);
   }
 
   moveAllToList2(): void {
     this.moveAllFromAToB(this.list, this.list2);
     this.selectedItems = [];
+    this.onChange(this.list2);
   }
 
   selectFromList2(element: any): void {
